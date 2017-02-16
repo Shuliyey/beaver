@@ -1,6 +1,6 @@
 dir_name=$(cd `dirname $0` && pwd)
 params=$@
-tag=alpine
+tag=latest
 conf_path=${dir_name}/beaver.conf
 name=beaver
 net=bridge
