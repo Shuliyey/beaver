@@ -12,4 +12,4 @@ COPY beaver.conf /opt/beaver/
 
 VOLUME /opt/beaver
 
-CMD ["/usr/bin/beaver", "-c","/opt/beaver/beaver.conf","-t","sqs"]
+CMD ["/usr/bin/beaver", "-c","/opt/beaver/beaver.conf"]
