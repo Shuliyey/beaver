@@ -2,7 +2,7 @@ dir_name=$(cd `dirname $0` && pwd)
 params=$@
 tag=latest
 conf_path=${dir_name}/beaver.conf
-data_path=${dir_name}/data
+log_path=${dir_name}/log
 name=beaver
 net=bridge
 debug=false
@@ -24,8 +24,8 @@ for param in $params; do
       --conf_path)
         conf_path=${param_array[1]}
 	;;
-      --data_path)
-        data_path=${param_array[1]}
+      --log_path)
+        log_path=${param_array[1]}
 	;;
       --name)
         name=${param_array[1]}
@@ -41,11 +41,11 @@ for param in $params; do
 done
 
 if [ "$debug" == "true" ]; then
-  echo "tag=$tag, config_path=$config_path, data_path=$data_path, name=$name, net=$net"
+  echo "tag=$tag, config_path=$config_path, log_path=$log_path, name=$name, net=$net"
 fi
 
 docker run -it -d --name=$name --restart=always \
   --net=$net \
   -v $conf_path:/opt/beaver/beaver.conf \
-  -v $data_path:/data \
+  -v $log_path:/opt/beaver/log \
   shuliyey/beaver:$tag
