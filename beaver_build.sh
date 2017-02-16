@@ -2,7 +2,7 @@ dir_name=$(cd `dirname $0` && pwd)
 params=$@
 tag=latest
 debug=false
-path=.
+path=${dir_name}
 
 for param in $params; do
 
@@ -30,6 +30,10 @@ done
 
 if [ "$debug" == "true" ]; then
   echo "tag=$tag, path=$path"
+fi
+
+if [ ! -f $path/beaver.conf ]; then
+  touch $path/beaver.conf
 fi
 
 docker build -t shuliyey/beaver:$tag $path
